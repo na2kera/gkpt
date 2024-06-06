@@ -11,6 +11,7 @@ const Auth = () => {
     return (
       <>
         signed in as {session.user?.name} <br />
+        {session.user?.email && <p>Discord ID: {session.user.email}</p>}
         {session.user?.image && (
           <img
             src={session.user.image}
