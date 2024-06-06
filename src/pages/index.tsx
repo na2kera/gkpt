@@ -1,6 +1,9 @@
 import Image from "next/image";
 import { Inter } from "next/font/google";
 import Auth from "./components/Auth";
+import EditIcon from "@mui/icons-material/Edit";
+import { Fab } from "@mui/material";
+import Link from "next/link";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -64,7 +67,11 @@ export default function Home() {
             Learn about Next.js in an interactive course with&nbsp;quizzes!
           </p>
         </a>
-
+        <Link href="/createPost">
+          <Fab color="secondary" aria-label="edit">
+            <EditIcon />
+          </Fab>
+        </Link>
         <a
           href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
           className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
