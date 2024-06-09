@@ -1,13 +1,15 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { supabase } from "../../../lib/supabaseClient";
 
+//TODO: ユーザー名入れる、コンポーネント化
 type Post = {
-  discord_id: string;
+  email: string;
   good: string;
   keep: string;
   problem: string;
   action: string;
   comment: string;
+  imageUrl: string;
 };
 
 type ResponseData = {
@@ -24,9 +26,9 @@ export default async function Post(
     return;
   }
 
-  const { discord_id, good, keep, problem, action, comment } = req.body;
+  const { email, good, keep, problem, action, comment, imageUrl } = req.body;
 
-  if (!discord_id) {
+  if (!email) {
     res.status(400).json({ data: null, error: "Missing required fields" });
     return;
   }
