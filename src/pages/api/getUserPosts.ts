@@ -25,6 +25,7 @@ export default async function getUserPosts(
   req: NextApiRequest,
   res: NextApiResponse<ResponseData>
 ) {
+  //TODO: セッションからemailを取得する
   const email = "nat3mitaro@gmail.com";
 
   if (req.method !== "GET") {
