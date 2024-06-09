@@ -2,7 +2,6 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { supabase } from "../../../lib/supabaseClient";
 
 type User = {
-  did: string;
   name: string;
   email: string;
   image: string;
@@ -22,11 +21,11 @@ export default async function handler(
     return;
   }
 
-  const { id, name, email, image } = req.body;
+  const { name, email, image } = req.body;
 
   const { data, error } = await supabase
     .from("Users")
-    .insert([req.body])
+    .upsert({ name, email, image }, { onConflict: "email" })
     .select();
 
   if (error) {

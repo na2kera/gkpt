@@ -15,14 +15,15 @@ export const authOptions = {
     secret: process.env.JWT_SECRET,
   },
   callback: {
-    async jwt(token, user, account, profile, isNewUser) {
-      if (profile) {
-        token.avatar = profile.avatar;
+    async jwt(token, account) {
+      if (account) {
+        token.accessToken = account.access_token;
       }
       return token;
     },
-    async session(session, token) {
-      session.user.avatar = `https://cdn.discordapp.com/avatars/${token.sub}/${token.avatar}.png`;
+    async session(session, token, user) {
+      // session.user.avatar = `https://cdn.discordapp.com/avatars/${token.sub}/${token.avatar}.png`;
+      session.accessToken = token.accessToken;
       return session;
     },
   },
