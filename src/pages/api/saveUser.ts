@@ -12,7 +12,7 @@ type ResponseData = {
   error: any;
 };
 
-export default async function handler(
+export default async function savaUser(
   req: NextApiRequest,
   res: NextApiResponse<ResponseData>
 ) {
