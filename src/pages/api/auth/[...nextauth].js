@@ -22,7 +22,6 @@ export const authOptions = {
       return token;
     },
     async session(session, token, user) {
-      // session.user.avatar = `https://cdn.discordapp.com/avatars/${token.sub}/${token.avatar}.png`;
       session.accessToken = token.accessToken;
       return session;
     },
