@@ -1,7 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { supabase } from "../../../lib/supabaseClient";
 
-//TODO: ユーザー名入れる、コンポーネント化
 type Post = {
   email: string;
   good: string;
@@ -9,7 +8,6 @@ type Post = {
   problem: string;
   action: string;
   comment: string;
-  imageUrl: string;
 };
 
 type ResponseData = {
@@ -26,7 +24,7 @@ export default async function Post(
     return;
   }
 
-  const { email, good, keep, problem, action, comment, imageUrl } = req.body;
+  const { email, good, keep, problem, action, comment } = req.body;
 
   if (!email) {
     res.status(400).json({ data: null, error: "Missing required fields" });

@@ -11,7 +11,6 @@ const CreatePost = () => {
   }
 
   const email = session?.user?.email;
-  const imageUrl = session?.user?.image;
 
   const [good, setGood] = useState("");
   const [keep, setKeep] = useState("");
@@ -34,7 +33,6 @@ const CreatePost = () => {
         problem,
         action,
         comment,
-        imageUrl,
       }),
     });
   };
