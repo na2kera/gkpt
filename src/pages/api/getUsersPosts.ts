@@ -58,7 +58,9 @@ export default async function getUsersPosts(
     return acc;
   }, {});
 
-  const result = posts.map((post: any) => ({
+  const reversedPosts = posts.reverse();
+
+  const result = reversedPosts.map((post: any) => ({
     ...post,
     user: userMap[post.email],
   }));
