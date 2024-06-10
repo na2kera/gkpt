@@ -9,17 +9,17 @@ import HomeIcon from "@mui/icons-material/Home";
 const CreatePost = () => {
   const { data: session, status } = useSession();
 
-  if (status === "loading") {
-    return <p>Loading...</p>;
-  }
-
-  const email = session?.user?.email;
-
   const [good, setGood] = useState("");
   const [keep, setKeep] = useState("");
   const [problem, setProblem] = useState("");
   const [action, setAction] = useState("");
   const [comment, setComment] = useState("");
+
+  if (status === "loading") {
+    return <p>Loading...</p>;
+  }
+
+  const email = session?.user?.email;
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
