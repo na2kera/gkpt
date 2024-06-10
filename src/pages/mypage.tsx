@@ -1,6 +1,22 @@
 import React, { use, useEffect, useState } from "react";
 import { signIn, signOut, useSession } from "next-auth/react";
-import { Box } from "@mui/material";
+import {
+  Avatar,
+  Box,
+  Card,
+  CardActions,
+  CardContent,
+  CardHeader,
+  Fab,
+  IconButton,
+  Typography,
+} from "@mui/material";
+import { red } from "@mui/material/colors";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import ShareIcon from "@mui/icons-material/Share";
+import HomeIcon from "@mui/icons-material/Home";
+import Link from "next/link";
 
 type Post = {
   email: string;
@@ -9,6 +25,7 @@ type Post = {
   problem: string;
   action: string;
   comment: string;
+  created_at: string;
   user: { email: string; name: string; image: string };
 };
 
@@ -70,33 +87,91 @@ const MyPage = () => {
   if (session) {
     return (
       <>
-        signed in as {session.user?.name} <br />
-        {session.user?.email}
-        {session.user?.image && (
-          <img
-            src={session.user.image}
-            alt="User Avatar"
-            width={50}
-            height={50}
-          />
-        )}
-        <button onClick={() => signOut()}>Sign out</button>
-        <div>
-          {posts.map((post, index) => (
-            <div key={index}>
-              <h3>{post.good}</h3>
-              <p>{post.action}</p>
-              <p>{post.user.name}</p>
-              <img
-                src={post.user.image}
-                alt="User Avatar"
-                width={50}
-                height={50}
-              />
-              <br />
-            </div>
-          ))}
+        <div className="absolute top-10 right-8 flex row">
+          {session.user?.image && <Avatar src={session.user.image}></Avatar>}
+          <div className="px-4 flex items-center font-bold">
+            {session.user?.name}
+          </div>
         </div>
+        <div
+          className={`flex min-h-screen flex-col items-center justify-between p-24`}
+        >
+          <div>
+            {posts.map((post, index) => (
+              <Card sx={{ maxWidth: 600 }}>
+                {post.user?.image ? (
+                  <CardHeader
+                    avatar={
+                      <Avatar
+                        sx={{ bgcolor: red[500] }}
+                        aria-label="recipe"
+                        src={post.user.image}
+                      ></Avatar>
+                    }
+                    action={
+                      <IconButton aria-label="settings">
+                        <MoreVertIcon />
+                      </IconButton>
+                    }
+                    title={post.user.name}
+                    subheader={post.created_at}
+                  />
+                ) : (
+                  <CardHeader
+                    avatar={
+                      <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
+                        R
+                      </Avatar>
+                    }
+                    action={
+                      <IconButton aria-label="settings">
+                        <MoreVertIcon />
+                      </IconButton>
+                    }
+                    title="Shrimp and Chorizo Paella"
+                    subheader="September 14, 2016"
+                  />
+                )}
+
+                <CardContent>
+                  <Typography variant="h6">good</Typography>
+                  <Typography variant="body2" color="text.secondary">
+                    {post.good}
+                  </Typography>
+                  <Typography variant="h6">keep</Typography>
+                  <Typography variant="body2" color="text.secondary">
+                    {post.keep}
+                  </Typography>
+                  <Typography variant="h6">problem</Typography>
+                  <Typography variant="body2" color="text.secondary">
+                    {post.problem}
+                  </Typography>
+                  <Typography variant="h6">try</Typography>
+                  <Typography variant="body2" color="text.secondary">
+                    {post.action}
+                  </Typography>
+                  <Typography variant="h6">ひとこと</Typography>
+                  <Typography variant="body2" color="text.secondary">
+                    {post.comment}
+                  </Typography>
+                </CardContent>
+                <CardActions disableSpacing>
+                  <IconButton aria-label="add to favorites">
+                    <FavoriteIcon />
+                  </IconButton>
+                  <IconButton aria-label="share">
+                    <ShareIcon />
+                  </IconButton>
+                </CardActions>
+              </Card>
+            ))}
+          </div>
+        </div>
+        <Link className="fixed left-4 bottom-4" href="/">
+          <Fab color="secondary" aria-label="edit">
+            <HomeIcon />
+          </Fab>
+        </Link>
       </>
     );
   }
