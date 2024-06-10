@@ -14,6 +14,7 @@ type Post = {
   problem: string;
   action: string;
   comment: string;
+  created_at: string;
 };
 
 type ResponseData = {
@@ -32,7 +33,7 @@ export default async function getUsersPosts(
 
   const { data: posts, error: postError } = await supabase
     .from("Posts")
-    .select("email, good, keep, problem, action, comment");
+    .select("email, good, keep, problem, action, comment, created_at");
 
   if (postError) {
     res.status(500).json({ data: null, error: postError });
