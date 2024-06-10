@@ -25,10 +25,9 @@ export default async function getUserPosts(
   req: NextApiRequest,
   res: NextApiResponse<ResponseData>
 ) {
-  //TODO: セッションからemailを取得する
-  const email = "nat3mitaro@gmail.com";
+  const email = req.body.email;
 
-  if (req.method !== "GET") {
+  if (req.method !== "POST") {
     res.status(405).json({ data: null, error: "Method Not Allowed" });
     return;
   }
