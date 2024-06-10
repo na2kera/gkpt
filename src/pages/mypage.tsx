@@ -98,7 +98,7 @@ const MyPage = () => {
         >
           <div>
             {posts.map((post, index) => (
-              <Card sx={{ maxWidth: 600 }}>
+              <Card key={index} sx={{ maxWidth: 600 }}>
                 {post.user?.image ? (
                   <CardHeader
                     avatar={

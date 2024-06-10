@@ -72,7 +72,7 @@ export default function Home() {
         </div>
         <div>
           {posts.map((post, index) => (
-            <Card sx={{ maxWidth: 600 }}>
+            <Card key={index} sx={{ maxWidth: 600 }}>
               {post.user?.image ? (
                 <CardHeader
                   avatar={<Avatar src={post.user.image}></Avatar>}
