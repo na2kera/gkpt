@@ -1,4 +1,4 @@
-import { Box, Button, CardContent, Fab } from "@mui/material";
+import { Box, Button, Fab } from "@mui/material";
 import { useSession } from "next-auth/react";
 import React, { useState } from "react";
 import SendIcon from "@mui/icons-material/Send";
