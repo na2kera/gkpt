@@ -1,4 +1,3 @@
-import { Inter } from "next/font/google";
 import Auth from "./components/Auth";
 import EditIcon from "@mui/icons-material/Edit";
 import {
