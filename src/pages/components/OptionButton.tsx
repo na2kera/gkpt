@@ -86,7 +86,7 @@ const OptionButton = ({ post }: Props) => {
 
   return (
     <>
-      {session?.user?.email === post.email && (
+      {session?.user?.email === post?.email && (
         <Stack direction="row" spacing={2}>
           <div>
             <IconButton
