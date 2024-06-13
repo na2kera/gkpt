@@ -38,6 +38,16 @@ export default function Home() {
   const { data: session, status } = useSession();
   const [posts, setPosts] = useState<Post[]>([]);
 
+  const formatDate = (date: string) => {
+    const d = new Date(date);
+    const year = d.getFullYear();
+    const month = d.getMonth() + 1;
+    const day = d.getDate();
+    const hour = d.getHours();
+    const minute = d.getMinutes().toString().padStart(2, "0");
+    return `${year}/${month}/${day} ${hour}:${minute}`;
+  };
+
   useEffect(() => {
     const saveUser = async () => {
       if (session?.user) {
@@ -106,7 +116,7 @@ export default function Home() {
                     </>
                   }
                   title={post.user.name}
-                  subheader={post.created_at}
+                  subheader={formatDate(post.created_at)}
                 />
               ) : (
                 <CardHeader
