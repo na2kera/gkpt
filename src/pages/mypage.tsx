@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { signIn, signOut, useSession } from "next-auth/react";
 import {
   Avatar,
-  Box,
   Card,
   CardActions,
   CardContent,
@@ -17,8 +16,10 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShareIcon from "@mui/icons-material/Share";
 import HomeIcon from "@mui/icons-material/Home";
 import Link from "next/link";
+import OptionButton from "./components/OptionButton";
 
 type Post = {
+  id: number;
   email: string;
   good: string;
   keep: string;
@@ -109,9 +110,9 @@ const MyPage = () => {
                       ></Avatar>
                     }
                     action={
-                      <IconButton aria-label="settings">
-                        <MoreVertIcon />
-                      </IconButton>
+                      <>
+                        <OptionButton post={post} />
+                      </>
                     }
                     title={post.user.name}
                     subheader={post.created_at}

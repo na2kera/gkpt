@@ -10,8 +10,24 @@ import {
 } from "@mui/material";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import React from "react";
+import { useSession } from "next-auth/react";
 
-const OptionButton = () => {
+type Post = {
+  id: number;
+  email: string;
+  good: string;
+  keep: string;
+  problem: string;
+  action: string;
+  comment: string;
+  created_at: string;
+  user: { email: string; name: string; image: string };
+};
+
+type Props = { post: Post };
+
+const OptionButton = ({ post }: Props) => {
+  const { data: session, status } = useSession();
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef<HTMLButtonElement>(null);
 
@@ -30,19 +46,24 @@ const OptionButton = () => {
     setOpen(false);
   };
 
-  //   const deletePost = async () => {
-  //     const res = await fetch("/api/deletePost", {
-  //       method: "DELETE",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify({
-  //         id: "id",
-  //       }),
-  //     });
-  //     const data = await res.json();
-  //     console.log(data);
-  //   };
+  const deletePost = async () => {
+    const res = await fetch("/api/deletePost", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id: post.id,
+      }),
+    });
+    const data = await res.json();
+
+    if (data.error) {
+      alert(data.error);
+    } else {
+      location.reload();
+    }
+  };
 
   function handleListKeyDown(event: React.KeyboardEvent) {
     if (event.key === "Tab") {
@@ -65,53 +86,55 @@ const OptionButton = () => {
 
   return (
     <>
-      <Stack direction="row" spacing={2}>
-        <div>
-          <IconButton
-            aria-label="settings"
-            ref={anchorRef}
-            id="composition-button"
-            aria-controls={open ? "composition-menu" : undefined}
-            aria-expanded={open ? "true" : undefined}
-            aria-haspopup="true"
-            onClick={handleToggle}
-          >
-            <MoreVertIcon />
-          </IconButton>
-          <Popper
-            open={open}
-            anchorEl={anchorRef.current}
-            role={undefined}
-            placement="bottom-start"
-            transition
-            disablePortal
-          >
-            {({ TransitionProps, placement }) => (
-              <Grow
-                {...TransitionProps}
-                style={{
-                  transformOrigin:
-                    placement === "bottom-start" ? "left top" : "left bottom",
-                }}
-              >
-                <Paper>
-                  <ClickAwayListener onClickAway={handleClose}>
-                    <MenuList
-                      autoFocusItem={open}
-                      id="composition-menu"
-                      aria-labelledby="composition-button"
-                      onKeyDown={handleListKeyDown}
-                    >
-                      <MenuItem onClick={handleClose}>delete</MenuItem>
-                      <MenuItem onClick={handleClose}>edit</MenuItem>
-                    </MenuList>
-                  </ClickAwayListener>
-                </Paper>
-              </Grow>
-            )}
-          </Popper>
-        </div>
-      </Stack>
+      {session?.user?.email === post?.email && (
+        <Stack direction="row" spacing={2}>
+          <div>
+            <IconButton
+              aria-label="settings"
+              ref={anchorRef}
+              id="composition-button"
+              aria-controls={open ? "composition-menu" : undefined}
+              aria-expanded={open ? "true" : undefined}
+              aria-haspopup="true"
+              onClick={handleToggle}
+            >
+              <MoreVertIcon />
+            </IconButton>
+            <Popper
+              open={open}
+              anchorEl={anchorRef.current}
+              role={undefined}
+              placement="bottom-start"
+              transition
+              disablePortal
+            >
+              {({ TransitionProps, placement }) => (
+                <Grow
+                  {...TransitionProps}
+                  style={{
+                    transformOrigin:
+                      placement === "bottom-start" ? "left top" : "left bottom",
+                  }}
+                >
+                  <Paper>
+                    <ClickAwayListener onClickAway={handleClose}>
+                      <MenuList
+                        autoFocusItem={open}
+                        id="composition-menu"
+                        aria-labelledby="composition-button"
+                        onKeyDown={handleListKeyDown}
+                      >
+                        <MenuItem onClick={deletePost}>delete</MenuItem>
+                        <MenuItem onClick={handleClose}>edit</MenuItem>
+                      </MenuList>
+                    </ClickAwayListener>
+                  </Paper>
+                </Grow>
+              )}
+            </Popper>
+          </div>
+        </Stack>
+      )}
     </>
   );
 };

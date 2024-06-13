@@ -23,6 +23,7 @@ import ShareIcon from "@mui/icons-material/Share";
 import OptionButton from "./components/OptionButton";
 
 type Post = {
+  id: number;
   email: string;
   good: string;
   keep: string;
@@ -101,7 +102,7 @@ export default function Home() {
                       {/* <IconButton aria-label="settings">
                         <MoreVertIcon />
                       </IconButton> */}
-                      <OptionButton />
+                      <OptionButton post={post} />
                     </>
                   }
                   title={post.user.name}
@@ -123,7 +124,6 @@ export default function Home() {
                   subheader="September 14, 2016"
                 />
               )}
-
               <CardContent>
                 <Typography variant="h6">good</Typography>
                 <Typography variant="body2" color="text.secondary">
