@@ -2,12 +2,15 @@ import Auth from "./components/Auth";
 import EditIcon from "@mui/icons-material/Edit";
 import {
   Avatar,
+  Button,
   Card,
   CardActions,
   CardContent,
   CardHeader,
   Fab,
   IconButton,
+  Menu,
+  MenuItem,
   Typography,
 } from "@mui/material";
 import Link from "next/link";
@@ -17,6 +20,7 @@ import { red } from "@mui/material/colors";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShareIcon from "@mui/icons-material/Share";
+import OptionButton from "./components/OptionButton";
 
 type Post = {
   email: string;
@@ -93,9 +97,12 @@ export default function Home() {
                 <CardHeader
                   avatar={<Avatar src={post.user.image}></Avatar>}
                   action={
-                    <IconButton aria-label="settings">
-                      <MoreVertIcon />
-                    </IconButton>
+                    <>
+                      {/* <IconButton aria-label="settings">
+                        <MoreVertIcon />
+                      </IconButton> */}
+                      <OptionButton />
+                    </>
                   }
                   title={post.user.name}
                   subheader={post.created_at}
