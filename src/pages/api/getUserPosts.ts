@@ -8,6 +8,7 @@ import { supabase } from "../../../lib/supabaseClient";
 // };
 
 type Post = {
+  id: number;
   email: string;
   good: string;
   keep: string;
@@ -35,7 +36,7 @@ export default async function getUserPosts(
 
   const { data: posts, error: postError } = await supabase
     .from("Posts")
-    .select("email, good, keep, problem, action, comment, created_at")
+    .select("id, email, good, keep, problem, action, comment, created_at")
     .eq("email", email);
 
   if (postError) {
