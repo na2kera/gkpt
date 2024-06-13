@@ -102,7 +102,7 @@ export default function Home() {
                       {/* <IconButton aria-label="settings">
                         <MoreVertIcon />
                       </IconButton> */}
-                      <OptionButton session={session} post={post} />
+                      <OptionButton post={post} />
                     </>
                   }
                   title={post.user.name}

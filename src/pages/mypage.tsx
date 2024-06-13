@@ -111,7 +111,7 @@ const MyPage = () => {
                     }
                     action={
                       <>
-                        <OptionButton session={session} post={post} />
+                        <OptionButton post={post} />
                       </>
                     }
                     title={post.user.name}

@@ -10,6 +10,7 @@ import {
 } from "@mui/material";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import React from "react";
+import { useSession } from "next-auth/react";
 
 type Post = {
   id: number;
@@ -23,9 +24,10 @@ type Post = {
   user: { email: string; name: string; image: string };
 };
 
-type Props = { session: any; post: Post };
+type Props = { post: Post };
 
-const OptionButton = ({ session, post }: Props) => {
+const OptionButton = ({ post }: Props) => {
+  const { data: session, status } = useSession();
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef<HTMLButtonElement>(null);
 
@@ -84,7 +86,7 @@ const OptionButton = ({ session, post }: Props) => {
 
   return (
     <>
-      {session.user.email === post.email && (
+      {session?.user?.email === post.email && (
         <Stack direction="row" spacing={2}>
           <div>
             <IconButton
