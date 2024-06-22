@@ -115,7 +115,7 @@ const CreatePost = () => {
         </div>
       </div>
       <Link className="fixed left-4 bottom-4" href="/">
-        <Fab color="secondary" aria-label="edit">
+        <Fab color="secondary" aria-label="home">
           <HomeIcon />
         </Fab>
       </Link>

@@ -126,7 +126,7 @@ const OptionButton = ({ post }: Props) => {
                         onKeyDown={handleListKeyDown}
                       >
                         <MenuItem onClick={deletePost}>delete</MenuItem>
-                        <MenuItem onClick={handleClose}>edit</MenuItem>
+                        {/* <MenuItem onClick={handleClose}>edit</MenuItem> */}
                       </MenuList>
                     </ClickAwayListener>
                   </Paper>
