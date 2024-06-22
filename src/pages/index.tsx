@@ -4,18 +4,6 @@ import { useEffect, useState } from "react";
 import PostIcon from "./components/PostIcon";
 import PostCard from "./components/PostCard";
 
-// type Post = {
-//   id: number;
-//   email: string;
-//   good: string;
-//   keep: string;
-//   problem: string;
-//   action: string;
-//   comment: string;
-//   created_at: string;
-//   user: { email: string; name: string; image: string };
-// };
-
 export default function Home() {
   const { data: session, status } = useSession();
   const [posts, setPosts] = useState<Post[]>([]);
