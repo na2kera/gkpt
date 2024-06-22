@@ -1,4 +1,4 @@
-import { Box, Button, Fab } from "@mui/material";
+import { Box, Button, Fab, TextField } from "@mui/material";
 import { useSession } from "next-auth/react";
 import React, { useState } from "react";
 import SendIcon from "@mui/icons-material/Send";
@@ -47,51 +47,61 @@ const CreatePost = () => {
         <div className="border border-gray-300 p-5 rounded">
           <form onSubmit={handleSubmit}>
             <div className="mb-5">
-              <label className="block mb-2">good</label>
-              <textarea
+              <TextField
                 required
-                className="w-full p-2 border border-gray-300 rounded"
-                onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+                label="good"
+                variant="outlined"
+                fullWidth
+                multiline
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                   setGood(e.target.value)
                 }
               />
             </div>
             <div className="mb-5">
-              <label className="block mb-2">keep</label>
-              <textarea
+              <TextField
                 required
-                className="w-full p-2 border border-gray-300 rounded"
-                onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+                label="keep"
+                variant="outlined"
+                fullWidth
+                multiline
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                   setKeep(e.target.value)
                 }
               />
             </div>
             <div className="mb-5">
-              <label className="block mb-2">problem</label>
-              <textarea
+              <TextField
                 required
-                className="w-full p-2 border border-gray-300 rounded"
-                onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+                label="problem"
+                variant="outlined"
+                fullWidth
+                multiline
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                   setProblem(e.target.value)
                 }
               />
             </div>
             <div className="mb-5">
-              <label className="block mb-2">try</label>
-              <textarea
+              <TextField
                 required
-                className="w-full p-2 border border-gray-300 rounded"
-                onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+                label="try"
+                variant="outlined"
+                fullWidth
+                multiline
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                   setAction(e.target.value)
                 }
               />
             </div>
             <div className="mb-5">
-              <label className="block mb-2">ひとこと</label>
-              <textarea
+              <TextField
                 required
-                className="w-full p-2 border border-gray-300 rounded"
-                onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+                label="ひとこと"
+                variant="outlined"
+                fullWidth
+                multiline
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                   setComment(e.target.value)
                 }
               />
