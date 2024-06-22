@@ -10,23 +10,23 @@ const GkptContents: FC<Props> = ({ post }) => {
     <CardContent>
       <Typography variant="h6">good</Typography>
       <Typography variant="body2" color="text.secondary">
-        {post.good}
+        {post?.good || ""}
       </Typography>
       <Typography variant="h6">keep</Typography>
       <Typography variant="body2" color="text.secondary">
-        {post.keep}
+        {post?.keep || ""}
       </Typography>
       <Typography variant="h6">problem</Typography>
       <Typography variant="body2" color="text.secondary">
-        {post.problem}
+        {post?.problem || ""}
       </Typography>
       <Typography variant="h6">try</Typography>
       <Typography variant="body2" color="text.secondary">
-        {post.action}
+        {post?.action || ""}
       </Typography>
       <Typography variant="h6">ひとこと</Typography>
       <Typography variant="body2" color="text.secondary">
-        {post.comment}
+        {post?.comment || ""}
       </Typography>
     </CardContent>
   );

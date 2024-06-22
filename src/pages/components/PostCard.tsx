@@ -14,7 +14,7 @@ const PostCard: FC<Props> = ({ post, key }) => {
   return (
     <Card key={key} sx={{ maxWidth: 600 }}>
       <CardHeader
-        avatar={<Avatar src={post.user.image}></Avatar>}
+        avatar={<Avatar src={post?.user?.image || ""}></Avatar>}
         action={
           <>
             <OptionButton post={post} />
