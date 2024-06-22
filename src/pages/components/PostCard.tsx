@@ -1,14 +1,6 @@
-import {
-  Avatar,
-  Card,
-  CardActions,
-  CardContent,
-  CardHeader,
-  IconButton,
-  Typography,
-} from "@mui/material";
+import { Avatar, Card, CardHeader } from "@mui/material";
 import OptionButton from "./OptionButton";
-import { formatDate } from "../utils/timeData";
+import { formatDate } from "../../../utils/timeData";
 import Buttons from "./Buttons";
 import GkptContents from "./GkptContents";
 import { FC } from "react";
