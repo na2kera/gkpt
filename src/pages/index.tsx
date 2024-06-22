@@ -3,6 +3,7 @@ import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import PostIcon from "./components/PostIcon";
 import PostCard from "./components/PostCard";
+import { Box } from "@mui/material";
 
 export default function Home() {
   const { data: session, status } = useSession();
@@ -47,21 +48,37 @@ export default function Home() {
 
   return (
     <>
-      <div
-        className={`flex min-h-screen flex-col items-center justify-between p-24 `}
+      <Box
+        position={"fixed"}
+        sx={{
+          width: "100%",
+          alignItems: "end",
+          justifyContent: "center",
+          background: "linear-gradient(to top, white, white)",
+          backgroundColor: "white",
+        }}
       >
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <Auth />
-        </div>
+        <Auth />
+      </Box>
+      <Box
+        sx={{
+          display: "flex",
+          minHeight: "100vh",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "space-between",
+          padding: "24px",
+        }}
+      >
         <PostIcon />
-        <div>
+        <Box>
           {posts.map((post, index) => (
             <>
               <PostCard post={post} key={index} />
             </>
           ))}
-        </div>
-      </div>
+        </Box>
+      </Box>
     </>
   );
 }

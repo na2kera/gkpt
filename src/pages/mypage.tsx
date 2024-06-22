@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { signIn, signOut, useSession } from "next-auth/react";
-import { Avatar, Fab } from "@mui/material";
+import { Avatar, Box, Fab } from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
 import Link from "next/link";
 import Post from "./api/post";
@@ -57,21 +57,37 @@ const MyPage = () => {
   if (session) {
     return (
       <>
-        <div className="absolute top-10 right-8 flex row">
-          {session.user?.image && <Avatar src={session.user.image}></Avatar>}
-          <div className="px-4 flex items-center font-bold">
-            {session.user?.name}
-          </div>
-        </div>
-        <div
-          className={`flex min-h-screen flex-col items-center justify-between p-24`}
+        <Box
+          position={"absolute"}
+          display={"flex"}
+          flexDirection={"row"}
+          top={20}
+          right={12}
         >
-          <div>
+          {session.user?.image && <Avatar src={session.user.image}></Avatar>}
+          <Box
+            px={2}
+            display={"flex"}
+            alignItems={"center"}
+            fontWeight={"bold"}
+          >
+            {session.user?.name}
+          </Box>
+        </Box>
+        <Box
+          display="flex"
+          minHeight="100vh"
+          flexDirection="column"
+          alignItems="center"
+          justifyContent="space-between"
+          p={6}
+        >
+          <Box>
             {posts.map((post, index) => (
               <PostCard post={post} key={index} />
             ))}
-          </div>
-        </div>
+          </Box>
+        </Box>
         <Link className="fixed left-4 bottom-4" href="/">
           <Fab color="secondary" aria-label="edit">
             <HomeIcon />

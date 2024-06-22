@@ -1,4 +1,5 @@
 import {
+  Box,
   ClickAwayListener,
   Grow,
   IconButton,
@@ -88,7 +89,7 @@ const OptionButton = ({ post }: Props) => {
     <>
       {session?.user?.email === post?.email && (
         <Stack direction="row" spacing={2}>
-          <div>
+          <Box>
             <IconButton
               aria-label="settings"
               ref={anchorRef}
@@ -132,7 +133,7 @@ const OptionButton = ({ post }: Props) => {
                 </Grow>
               )}
             </Popper>
-          </div>
+          </Box>
         </Stack>
       )}
     </>

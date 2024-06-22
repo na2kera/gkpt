@@ -1,4 +1,4 @@
-import { Avatar, Button } from "@mui/material";
+import { Avatar, Box, Button } from "@mui/material";
 import { signIn, signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import LogoutIcon from "@mui/icons-material/Logout";
@@ -14,37 +14,54 @@ const Auth = () => {
   if (session) {
     return (
       <>
-        <div className="absolute top-10 right-8 flex row">
+        <Box
+          position={"absolute"}
+          top={20}
+          display={"flex"}
+          flexDirection={"row"}
+          right={12}
+        >
           <Button
-            className="px-4"
+            sx={{ paddingX: "16px" }}
             onClick={() => signOut()}
             endIcon={<LogoutIcon />}
           >
             Sign out
           </Button>
           <Link href="/mypage">
-            <div className=" flex row">
+            <Box display={"flex"} flexDirection={"row"}>
               {session.user?.image && (
                 <>
-                  <Avatar alt="Remy Sharp" src={session.user.image} />
-                  <div className="px-4 flex items-center font-bold">
+                  <Avatar alt="user image" src={session.user.image} />
+                  <Box
+                    display="flex"
+                    alignItems="center"
+                    fontWeight="bold"
+                    px={2}
+                  >
                     {session.user?.name}
-                  </div>
+                  </Box>
                 </>
               )}
-            </div>
+            </Box>
           </Link>
-        </div>
+        </Box>
       </>
     );
   }
   return (
     <>
-      <div className="absolute top-12 right-20 flex row">
+      <Box
+        position={"absolute"}
+        top={12}
+        right={20}
+        display={"flex"}
+        flexDirection={"row"}
+      >
         <Button onClick={() => signIn()} endIcon={<LoginIcon />}>
           Sign in
         </Button>
-      </div>
+      </Box>
     </>
   );
 };
