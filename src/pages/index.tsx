@@ -1,26 +1,9 @@
 import Auth from "./components/Auth";
-import EditIcon from "@mui/icons-material/Edit";
-import {
-  Avatar,
-  Button,
-  Card,
-  CardActions,
-  CardContent,
-  CardHeader,
-  Fab,
-  IconButton,
-  Menu,
-  MenuItem,
-  Typography,
-} from "@mui/material";
-import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
-import { red } from "@mui/material/colors";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import ShareIcon from "@mui/icons-material/Share";
-import OptionButton from "./components/OptionButton";
+import Post from "./api/post";
+import PostIcon from "./components/PostIcon";
+import PostCard from "./components/PostCard";
 
 type Post = {
   id: number;
@@ -37,16 +20,6 @@ type Post = {
 export default function Home() {
   const { data: session, status } = useSession();
   const [posts, setPosts] = useState<Post[]>([]);
-
-  const formatDate = (date: string) => {
-    const d = new Date(date);
-    const year = d.getFullYear();
-    const month = d.getMonth() + 1;
-    const day = d.getDate();
-    const hour = d.getHours();
-    const minute = d.getMinutes().toString().padStart(2, "0");
-    return `${year}/${month}/${day} ${hour}:${minute}`;
-  };
 
   useEffect(() => {
     const saveUser = async () => {
@@ -93,78 +66,12 @@ export default function Home() {
         <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
           <Auth />
         </div>
-
-        <div className="fixed bottom-12 right-12">
-          <Link href="/createPost">
-            <Fab color="secondary" aria-label="edit">
-              <EditIcon />
-            </Fab>
-          </Link>
-        </div>
+        <PostIcon />
         <div>
           {posts.map((post, index) => (
-            <Card key={index} sx={{ maxWidth: 600 }}>
-              {post.user?.image ? (
-                <CardHeader
-                  avatar={<Avatar src={post.user.image}></Avatar>}
-                  action={
-                    <>
-                      {/* <IconButton aria-label="settings">
-                        <MoreVertIcon />
-                      </IconButton> */}
-                      <OptionButton post={post} />
-                    </>
-                  }
-                  title={post.user.name}
-                  subheader={formatDate(post.created_at)}
-                />
-              ) : (
-                <CardHeader
-                  avatar={
-                    <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-                      R
-                    </Avatar>
-                  }
-                  action={
-                    <IconButton aria-label="settings">
-                      <MoreVertIcon />
-                    </IconButton>
-                  }
-                  title="Shrimp and Chorizo Paella"
-                  subheader="September 14, 2016"
-                />
-              )}
-              <CardContent>
-                <Typography variant="h6">good</Typography>
-                <Typography variant="body2" color="text.secondary">
-                  {post.good}
-                </Typography>
-                <Typography variant="h6">keep</Typography>
-                <Typography variant="body2" color="text.secondary">
-                  {post.keep}
-                </Typography>
-                <Typography variant="h6">problem</Typography>
-                <Typography variant="body2" color="text.secondary">
-                  {post.problem}
-                </Typography>
-                <Typography variant="h6">try</Typography>
-                <Typography variant="body2" color="text.secondary">
-                  {post.action}
-                </Typography>
-                <Typography variant="h6">ひとこと</Typography>
-                <Typography variant="body2" color="text.secondary">
-                  {post.comment}
-                </Typography>
-              </CardContent>
-              <CardActions disableSpacing>
-                <IconButton aria-label="add to favorites">
-                  <FavoriteIcon />
-                </IconButton>
-                <IconButton aria-label="share">
-                  <ShareIcon />
-                </IconButton>
-              </CardActions>
-            </Card>
+            <>
+              <PostCard post={post} key={index} />
+            </>
           ))}
         </div>
       </div>
