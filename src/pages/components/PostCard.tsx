@@ -24,7 +24,7 @@ const PostCard: FC<Props> = ({ post, key }) => {
         subheader={post?.created_at ? formatDate(post.created_at) : ""}
       />
       <GkptContents post={post} />
-      <Buttons />
+      {/* <Buttons /> */}
     </Card>
   );
 };
