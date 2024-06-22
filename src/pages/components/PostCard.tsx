@@ -20,8 +20,8 @@ const PostCard: FC<Props> = ({ post, key }) => {
             <OptionButton post={post} />
           </>
         }
-        title={post.user.name}
-        subheader={formatDate(post.created_at)}
+        title={post?.user?.name || "unknown"}
+        subheader={post?.created_at ? formatDate(post.created_at) : ""}
       />
       <GkptContents post={post} />
       <Buttons />
