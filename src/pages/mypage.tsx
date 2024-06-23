@@ -39,8 +39,6 @@ const MyPage = () => {
       } else {
         setPosts([]);
       }
-      console.log(data.data);
-      console.log(session?.user?.email);
     };
     getUserPosts();
   }, [session]);
