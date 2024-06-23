@@ -22,8 +22,12 @@ const Blank = () => {
         });
       }
     };
-    saveUser();
-    Router.push("/mypage");
+    const handleSaveUserAndRedirect = async () => {
+      await saveUser();
+      Router.push("/mypage");
+    };
+
+    handleSaveUserAndRedirect();
   }, [session]);
   return <></>;
 };
