@@ -5,15 +5,15 @@ import React, { useEffect, useState } from "react";
 
 const Blank = () => {
   const { data: session, status } = useSession();
-  const [statusValue, setStatusValue] = useState("");
+  const [sessionValue, setSessionValue] = useState(false);
 
   useEffect(() => {
-    const statusAuthenticated = async () => {
-      if (status === "authenticated") {
-        setStatusValue("authenticated");
+    const sessionActivate = async () => {
+      if (status === "authenticated" && session) {
+        setSessionValue(true);
       }
     };
-    statusAuthenticated();
+    sessionActivate();
   }, [status]);
 
   useEffect(() => {
@@ -43,7 +43,7 @@ const Blank = () => {
     };
 
     handleSaveUserAndRedirect();
-  }, [statusValue]);
+  }, [sessionValue]);
   return <></>;
 };
 
