@@ -14,7 +14,8 @@ const Blank = () => {
       }
     };
     sessionActivate();
-  }, [session]);
+    console.log("sessionValue: ", sessionValue);
+  }, [session, status]);
 
   useEffect(() => {
     const saveUser = async () => {
