@@ -24,6 +24,7 @@ const Blank = () => {
       }
       console.log("saveUser");
     };
+
     const handleSaveUserAndRedirect = async () => {
       await saveUser();
       console.log("session", session);
@@ -31,8 +32,10 @@ const Blank = () => {
       Router.push("/mypage");
     };
 
-    handleSaveUserAndRedirect();
-  }, [session]);
+    if (status === "authenticated" && session) {
+      handleSaveUserAndRedirect();
+    }
+  }, [session, status]);
   return <></>;
 };
 
