@@ -1,21 +1,9 @@
 import { useSession } from "next-auth/react";
 import Router from "next/router";
-
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 
 const Blank = () => {
   const { data: session, status } = useSession();
-  const [sessionValue, setSessionValue] = useState(false);
-
-  useEffect(() => {
-    const sessionActivate = async () => {
-      if (status === "authenticated" && session) {
-        setSessionValue(true);
-      }
-    };
-    sessionActivate();
-    console.log("sessionValue: ", sessionValue);
-  }, [session, status]);
 
   useEffect(() => {
     const saveUser = async () => {
@@ -43,8 +31,10 @@ const Blank = () => {
       Router.push("/mypage");
     };
 
-    handleSaveUserAndRedirect();
-  }, [sessionValue]);
+    if (status === "authenticated" && session) {
+      handleSaveUserAndRedirect();
+    }
+  }, [session, status]);
   return <></>;
 };
 
