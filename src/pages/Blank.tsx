@@ -7,7 +7,6 @@ const Blank = () => {
 
   useEffect(() => {
     const saveUser = async () => {
-      console.log("session", session);
       if (session?.user) {
         await fetch("/api/saveUser", {
           method: "POST",
@@ -21,13 +20,10 @@ const Blank = () => {
           }),
         });
       }
-      console.log("saveUser");
     };
 
     const handleSaveUserAndRedirect = async () => {
       await saveUser();
-      console.log("session", session);
-      console.log("redirect");
       Router.push("/mypage");
     };
 
