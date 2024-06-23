@@ -10,25 +10,6 @@ export default function Home() {
   const [posts, setPosts] = useState<Post[]>([]);
 
   useEffect(() => {
-    const saveUser = async () => {
-      if (session?.user) {
-        await fetch("/api/saveUser", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            name: session.user.name,
-            email: session.user.email,
-            image: session.user.image,
-          }),
-        });
-      }
-    };
-    saveUser();
-  }, [session]);
-
-  useEffect(() => {
     const getUserPosts = async () => {
       const res = await fetch("/api/getUsersPosts", {
         method: "GET",
