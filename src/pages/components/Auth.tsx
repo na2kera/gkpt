@@ -58,7 +58,10 @@ const Auth = () => {
         display={"flex"}
         flexDirection={"row"}
       >
-        <Button onClick={() => signIn()} endIcon={<LoginIcon />}>
+        <Button
+          onClick={() => signIn("discord", { callbackUrl: "/Blank" })}
+          endIcon={<LoginIcon />}
+        >
           Sign in
         </Button>
       </Box>
