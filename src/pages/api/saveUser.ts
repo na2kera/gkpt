@@ -29,6 +29,7 @@ export default async function savaUser(
     .select();
 
   if (error) {
+    console.error("error:", error);
     res.status(500).json({ data: null, error });
   } else {
     res.status(200).json({ data, error: null });
