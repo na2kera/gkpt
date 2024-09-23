@@ -2,8 +2,8 @@ import Auth from "./components/Auth";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import PostIcon from "./components/PostIcon";
-import PostCard from "./components/PostCard";
 import { Box } from "@mui/material";
+import PostCards from "./components/PostCards";
 
 export default function Home() {
   const { data: session, status } = useSession();
@@ -53,11 +53,7 @@ export default function Home() {
       >
         <PostIcon />
         <Box>
-          {posts.map((post, index) => (
-            <>
-              <PostCard post={post} key={index} />
-            </>
-          ))}
+          <PostCards posts={posts} />
         </Box>
       </Box>
     </>
