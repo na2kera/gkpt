@@ -1,31 +1,15 @@
 import { Box } from "@mui/material";
 import { useSession } from "next-auth/react";
-import { useEffect, useState } from "react";
 import Auth from "./Auth";
 import PostIcon from "./PostIcon";
 import PostCards from "./PostCards";
 
-const Top = () => {
-  const { data: session, status } = useSession();
-  const [posts, setPosts] = useState<Post[]>([]);
+type Props = {
+  posts: Post[];
+};
 
-  useEffect(() => {
-    const getUserPosts = async () => {
-      const res = await fetch("/api/getUsersPosts", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      const data = await res.json();
-      if (Array.isArray(data.data)) {
-        setPosts(data.data);
-      } else {
-        setPosts([]);
-      }
-    };
-    getUserPosts();
-  }, [session]);
+const Top = ({ posts }: Props) => {
+  const { data: session, status } = useSession();
 
   return (
     <>
