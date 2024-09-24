@@ -7,12 +7,11 @@ import { FC } from "react";
 
 type Props = {
   post: Post;
-  key: number;
 };
 
-const PostCard: FC<Props> = ({ post, key }) => {
+const PostCard: FC<Props> = ({ post }) => {
   return (
-    <Card key={key} sx={{ maxWidth: 600 }}>
+    <Card sx={{ maxWidth: 600 }}>
       <CardHeader
         avatar={<Avatar src={post?.user?.image || ""}></Avatar>}
         action={
