@@ -7,9 +7,9 @@ import LoginIcon from "@mui/icons-material/Login";
 const Auth = () => {
   const { data: session, status } = useSession();
 
-  if (status === "loading") {
-    return <p>Loading...</p>;
-  }
+  // if (status === "loading") {
+  //   return <p>Loading...</p>;
+  // }
 
   if (session) {
     return (
