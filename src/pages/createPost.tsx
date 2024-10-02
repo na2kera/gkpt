@@ -15,9 +15,9 @@ const CreatePost = () => {
   const [action, setAction] = useState("");
   const [comment, setComment] = useState("");
 
-  if (status === "loading") {
-    return <p>Loading...</p>;
-  }
+  // if (status === "loading") {
+  //   return <p>Loading...</p>;
+  // }
 
   const email = session?.user?.email;
 
