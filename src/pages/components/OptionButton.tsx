@@ -12,6 +12,8 @@ import {
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import React from "react";
 import { useSession } from "next-auth/react";
+import { Unstable_Popup as BasePopup } from "@mui/base/Unstable_Popup";
+import CopyIcon from "./CopyIcon";
 
 type Post = {
   id: number;
@@ -89,6 +91,7 @@ const OptionButton = ({ post }: Props) => {
     <>
       {session?.user?.email === post?.email && (
         <Stack direction="row" spacing={2}>
+          <CopyIcon post={post} />
           <Box>
             <IconButton
               aria-label="settings"
