@@ -10,7 +10,7 @@ const CopyIcon = ({ post }: Props) => {
   const [open, setOpen] = React.useState(false);
 
   const handleClick = () => {
-    const text = `**good**\n${post.good}\n**keep**\n${post.keep}\n**problem**\n${post.problem}\n**action**\n${post.action}\n**ひとこと**\n${post.comment}`;
+    const text = `**Good**\n${post.good}\n**Keep**\n${post.keep}\n**Problem**\n${post.problem}\n**Try**\n${post.action}\n**ひとこと**\n${post.comment}`;
 
     navigator.clipboard
       .writeText(text)
