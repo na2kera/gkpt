@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { supabase } from "../../../lib/supabaseClient";
+import { getGkpts, postGkpt } from "../../../utils/queries/gkptQueries";
 
 type GkptPost = {
   uuid: string;
@@ -35,17 +35,14 @@ async function POST(req: NextApiRequest, res: NextApiResponse<ResponseData>) {
     return;
   }
 
-  const { uuid, good, keep, problem, action, comment } = req.body;
+  const gkpt = req.body;
 
-  if (!uuid) {
+  if (!gkpt.uuid) {
     res.status(400).json({ data: null, error: "Missing required fields" });
     return;
   }
 
-  const { data, error } = await supabase
-    .from("Gkpts")
-    .insert([req.body])
-    .select();
+  const { data, error } = await postGkpt(gkpt);
 
   if (error) {
     res.status(500).json({ data: null, error });
@@ -59,7 +56,7 @@ async function GET(req: NextApiRequest, res: NextApiResponse<ResponseData>) {
     res.status(405).json({ data: null, error: "Method Not Allowed" });
     return;
   }
-  const { data, error } = await supabase.from("Gkpts").select("*");
+  const { data, error } = await getGkpts();
   if (error) {
     res.status(500).json({ data: null, error });
   } else {
