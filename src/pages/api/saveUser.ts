@@ -12,10 +12,19 @@ type ResponseData = {
   error: any;
 };
 
-export default async function savaUser(
+export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<ResponseData>
 ) {
+  switch (req.method) {
+    case "POST":
+      return await POST(req, res);
+    default:
+      res.status(405).json({ data: null, error: "Method Not Allowed" });
+  }
+}
+
+async function POST(req: NextApiRequest, res: NextApiResponse<ResponseData>) {
   if (req.method !== "POST") {
     res.status(405).json({ data: null, error: "Method Not Allowed" });
     return;
