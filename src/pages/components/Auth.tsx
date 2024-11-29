@@ -59,7 +59,7 @@ const Auth = () => {
         flexDirection={"row"}
       >
         <Button
-          onClick={() => signIn("discord", { callbackUrl: "/" })}
+          onClick={() => signIn("discord", { callbackUrl: "/saveuser" })}
           endIcon={<LoginIcon />}
         >
           Sign in
