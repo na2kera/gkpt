@@ -1,11 +1,12 @@
-import { getSession, useSession } from "next-auth/react";
+import { getSession } from "next-auth/react";
+import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 
 const SaveUser = () => {
+  const router = useRouter();
   useEffect(() => {
     const saveUserInformation = async () => {
       const session = await getSession();
-      console.log(session);
       try {
         const response = await fetch("/api/saveUser", {
           method: "POST",
@@ -20,6 +21,7 @@ const SaveUser = () => {
         });
         const data = await response.json();
         console.log("Response:", data);
+        router.push("/");
       } catch (error) {
         console.error("Error:", error);
       }
