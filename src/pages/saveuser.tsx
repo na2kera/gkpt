@@ -8,15 +8,15 @@ const SaveUser = () => {
     const saveUserInformation = async () => {
       const session = await getSession();
       try {
-        const response = await fetch("/api/saveUser", {
+        const response = await fetch("/api/members", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
+            uuid: session?.user?.id,
             name: session?.user?.name,
-            email: session?.user?.email,
-            image: session?.user?.image,
+            avatar: session?.user?.image,
           }),
         });
         const data = await response.json();
