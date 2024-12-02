@@ -10,7 +10,20 @@ type GkptPost = {
 };
 
 export const getGkpts = async () => {
-  const { data, error } = await supabase.from("Gkpts").select("*");
+  const { data, error } = await supabase.from("Gkpts").select(`
+    id,
+    uuid,
+    Members (
+      id,
+      name,
+      avatar
+    ),
+    good,
+    keep,
+    problem,
+    action,
+    comment
+    `);
   return { data, error };
 };
 

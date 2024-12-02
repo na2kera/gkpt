@@ -1,8 +1,16 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { getGkpts, postGkpt } from "../../../utils/queries/gkptQueries";
 
+type Members = {
+  id: string;
+  name: string;
+  avatar: string;
+};
+
 type GkptPost = {
   uuid: string;
+  id: string;
+  Members: Members[];
   good: string;
   keep: string;
   problem: string;
