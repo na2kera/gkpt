@@ -1,8 +1,15 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { getGkpts, postGkpt } from "../../../utils/queries/gkptQueries";
 
+type Members = {
+  id: string;
+  name: string;
+  avatar: string;
+};
+
 type GkptPost = {
-  uuid: string;
+  id: string;
+  Members: Members[];
   good: string;
   keep: string;
   problem: string;
@@ -51,7 +58,7 @@ async function POST(req: NextApiRequest, res: NextApiResponse<ResponseData>) {
   }
 }
 
-async function GET(req: NextApiRequest, res: NextApiResponse<any>) {
+async function GET(req: NextApiRequest, res: NextApiResponse<ResponseData>) {
   if (req.method !== "GET") {
     res.status(405).json({ data: null, error: "Method Not Allowed" });
     return;
