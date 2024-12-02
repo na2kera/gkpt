@@ -51,7 +51,7 @@ async function POST(req: NextApiRequest, res: NextApiResponse<ResponseData>) {
   }
 }
 
-async function GET(req: NextApiRequest, res: NextApiResponse<ResponseData>) {
+async function GET(req: NextApiRequest, res: NextApiResponse<any>) {
   if (req.method !== "GET") {
     res.status(405).json({ data: null, error: "Method Not Allowed" });
     return;
