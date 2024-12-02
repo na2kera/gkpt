@@ -8,6 +8,7 @@ type Members = {
 };
 
 type GkptPost = {
+  uuid: string;
   id: string;
   Members: Members[];
   good: string;
