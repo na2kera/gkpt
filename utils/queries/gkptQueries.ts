@@ -10,7 +10,8 @@ type GkptPost = {
 };
 
 export const getGkpts = async () => {
-  const { data, error } = await supabase.from("Gkpts").select(`
+  const { data, error } = await supabase.from("Gkpts").select(
+    `
     id,
     uuid,
     Members (
@@ -23,7 +24,31 @@ export const getGkpts = async () => {
     problem,
     action,
     comment
-    `);
+    `
+  );
+  return { data, error };
+};
+
+export const getIndividualGkpts = async (uuid: string) => {
+  const { data, error } = await supabase
+    .from("Gkpts")
+    .select(
+      `
+    id,
+    uuid,
+    Members (
+      id,
+      name,
+      avatar
+    ),
+    good,
+    keep,
+    problem,
+    action,
+    comment
+    `
+    )
+    .eq("uuid", uuid);
   return { data, error };
 };
 
