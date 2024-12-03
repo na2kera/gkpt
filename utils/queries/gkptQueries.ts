@@ -13,6 +13,7 @@ export const getGkpts = async () => {
   const { data, error } = await supabase.from("Gkpts").select(
     `
     id,
+    created_at,
     uuid,
     Members (
       id,
@@ -35,6 +36,7 @@ export const getIndividualGkpts = async (uuid: string) => {
     .select(
       `
     id,
+    created_at,
     uuid,
     Members (
       id,

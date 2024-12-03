@@ -10,6 +10,7 @@ type Members = {
 type GkptPost = {
   uuid: string;
   id: string;
+  created_at: string;
   Members: Members[];
   good: string;
   keep: string;
