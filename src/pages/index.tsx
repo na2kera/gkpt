@@ -9,7 +9,7 @@ export default function Home({ data }: Props) {
 }
 
 export async function getServerSideProps() {
-  const res = await fetch(`${process.env.URL}/api/getUsersPosts`, {
+  const res = await fetch(`${process.env.URL}/api/gkpt`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
