@@ -13,7 +13,7 @@ Discordでログイン。
 
 ## 自分の投稿一覧ページ
 <img width="1412" alt="スクリーンショット 2024-06-26 23 08 57" src="https://github.com/na2kera/gkpt/assets/139093152/58ab98bf-1592-4c4a-b03f-d5aa648ba3dd">
-自分の過去の投稿が見れる。Discodeで遡る必要がない。
+自分の過去の投稿が見れる。Discordで遡る必要がない。
 
 ## タイムライン
 <img width="1466" alt="スクリーンショット 2024-06-26 23 04 00" src="https://github.com/na2kera/gkpt/assets/139093152/904cf11b-6779-441a-857b-dd8a0aacc168">
