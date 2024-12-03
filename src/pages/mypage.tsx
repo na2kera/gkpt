@@ -3,20 +3,7 @@ import { signIn, signOut, useSession } from "next-auth/react";
 import { Avatar, Box, Fab } from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
 import Link from "next/link";
-import Post from "./api/post";
 import PostCard from "./components/PostCard";
-
-type Post = {
-  id: number;
-  email: string;
-  good: string;
-  keep: string;
-  problem: string;
-  action: string;
-  comment: string;
-  created_at: string;
-  user: { email: string; name: string; image: string };
-};
 
 const MyPage = () => {
   const { data: session, status } = useSession();
@@ -24,14 +11,8 @@ const MyPage = () => {
 
   useEffect(() => {
     const getUserPosts = async () => {
-      const res = await fetch("/api/getUserPosts", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: session?.user?.email,
-        }),
+      const res = await fetch(`/api/gkpt/${session?.user?.id}`, {
+        method: "GET",
       });
       const data = await res.json();
       if (Array.isArray(data.data)) {
