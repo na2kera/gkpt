@@ -115,7 +115,7 @@ const OptionButton = ({ post }: Props) => {
                         aria-labelledby="composition-button"
                         onKeyDown={handleListKeyDown}
                       >
-                        <MenuItem onClick={deletePost}>delete</MenuItem>
+                        <MenuItem onClick={deletePost}>削除する</MenuItem>
                         {/* <MenuItem onClick={handleClose}>edit</MenuItem> */}
                       </MenuList>
                     </ClickAwayListener>
