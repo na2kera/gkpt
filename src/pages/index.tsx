@@ -1,3 +1,4 @@
+import { fetchGkpts } from "../../utils/fetcher/fetchGkpts";
 import Top from "./components/Top";
 
 type Props = {
@@ -5,16 +6,14 @@ type Props = {
 };
 
 export default function Home({ data }: Props) {
-  return !data.error && <Top posts={data.data} />;
+  if (data.error) {
+    return <div>Error: {data.error}</div>;
+  }
+
+  return <Top posts={data.data} />;
 }
 
 export async function getServerSideProps() {
-  const res = await fetch(`${process.env.URL}/api/gkpt`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-  const data = await res.json();
+  const data = await fetchGkpts();
   return { props: { data } };
 }
