@@ -18,3 +18,24 @@ export const fetchGkpts = async () => {
     return { error: "Failed to fetch data" };
   }
 };
+
+export const fetchIndividualGkpts = async (uuid: string) => {
+  try {
+    const res = await fetch(`${process.env.URL}/api/gkpt/${uuid}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (!res.ok) {
+      throw new Error(`HTTP error! status: ${res.status}`);
+    }
+
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    console.error("Failed to fetch individual gkpts:", error);
+    return { error: "Failed to fetch data" };
+  }
+};

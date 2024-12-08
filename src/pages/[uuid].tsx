@@ -1,7 +1,17 @@
 import React from "react";
+import IndividualPage from "./components/IndividualPage";
+import { fetchIndividualGkpts } from "../../utils/fetcher/fetchGkpts";
 
-export default function Uuid({ uuid }: { uuid: string }) {
-  return <div>{uuid}</div>;
+type Props = {
+  data: { data: Post[]; error: any };
+};
+
+export default function Uuid({ data }: Props) {
+  if (data.error) {
+    return <div>Error: {data.error}</div>;
+  }
+
+  return <IndividualPage data={data.data} />;
 }
 
 export async function getServerSideProps({
@@ -10,6 +20,7 @@ export async function getServerSideProps({
   params: { uuid: string };
 }) {
   const uuid = params.uuid;
+  const data = await fetchIndividualGkpts(uuid);
 
-  return { props: { uuid } };
+  return { props: { data } };
 }
