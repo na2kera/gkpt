@@ -11,7 +11,7 @@ export default function Uuid({ data }: Props) {
     return <div>Error: {data.error}</div>;
   }
 
-  return <IndividualPage data={data.data} />;
+  return <IndividualPage posts={data.data} />;
 }
 
 export async function getServerSideProps({
