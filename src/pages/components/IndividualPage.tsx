@@ -12,7 +12,13 @@ type Props = {
 const IndividualPage = ({ posts }: Props) => {
   const { data: session, status } = useSession();
   const params = useParams();
-  const uuid = params.uuid;
+  const uuid = params ? params.uuid : null;
+
+  if (!uuid) {
+    console.error("UUID is null or undefined");
+    // TODO: 404ページにリダイレクト
+    return <div>Loading...</div>;
+  }
 
   return (
     <>
