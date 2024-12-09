@@ -1,4 +1,4 @@
-import { Avatar, Card, CardHeader } from "@mui/material";
+import { Avatar, Card, CardHeader, Link } from "@mui/material";
 import OptionButton from "./OptionButton";
 import { formatDate } from "../../../utils/timeData";
 import GkptContents from "./GkptContents";
@@ -12,7 +12,11 @@ const PostCard: FC<Props> = ({ post }) => {
   return (
     <Card sx={{ maxWidth: 600 }}>
       <CardHeader
-        avatar={<Avatar src={post?.Members?.avatar || ""}></Avatar>}
+        avatar={
+          <Link href={`/${post?.Members?.id}`}>
+            <Avatar src={post?.Members?.avatar || ""}></Avatar>
+          </Link>
+        }
         action={
           <>
             <OptionButton post={post} />
