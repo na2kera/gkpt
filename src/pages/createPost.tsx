@@ -19,18 +19,18 @@ const CreatePost = () => {
   //   return <p>Loading...</p>;
   // }
 
-  const email = session?.user?.email;
+  const uuid = session?.user?.id;
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // フォーム送信時の処理をここに追加
-    const res = await fetch("/api/post", {
+    // TODO: 切り出し
+    const res = await fetch("/api/gkpt", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        email,
+        uuid,
         good,
         keep,
         problem,
