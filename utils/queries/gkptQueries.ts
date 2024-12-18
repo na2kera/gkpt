@@ -30,6 +30,11 @@ export const getGkpts = async () => {
   return { data, error };
 };
 
+export const deleteGkpt = async (id: string) => {
+  const { data, error } = await supabase.from("Gkpts").delete().eq("id", id);
+  return { data, error };
+};
+
 export const getIndividualGkpts = async (uuid: string) => {
   const { data, error } = await supabase
     .from("Gkpts")
