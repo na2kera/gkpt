@@ -50,12 +50,17 @@ export const getGkpt = async (id: string) => {
       comment
     `
     )
-    .eq("id", id);
+    .eq("id", id)
+    .single();
   return { data, error };
 };
 
 export const deleteGkpt = async (id: string) => {
-  const { data, error } = await supabase.from("Gkpts").delete().eq("id", id);
+  const { data, error } = await supabase
+    .from("Gkpts")
+    .delete()
+    .eq("id", id)
+    .single();
   return { data, error };
 };
 

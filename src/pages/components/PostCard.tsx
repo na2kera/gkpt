@@ -13,7 +13,8 @@ const PostCard: FC<Props> = ({ post }) => {
   if (!post || !post.Members) return null;
 
   return (
-    <Card sx={{ maxWidth: 600 }}>
+    //TODO: レスポンシブ対応
+    <Card sx={{ width: 600 }}>
       <Link href={`${post.Members?.id}/gkpt/${post.id}`}>
         <CardHeader
           avatar={
