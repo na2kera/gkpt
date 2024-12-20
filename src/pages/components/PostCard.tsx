@@ -10,7 +10,7 @@ type Props = {
 };
 
 const PostCard: FC<Props> = ({ post }) => {
-  if (!post.Members) return null;
+  if (!post || !post.Members) return null;
 
   return (
     <Card sx={{ maxWidth: 600 }}>
