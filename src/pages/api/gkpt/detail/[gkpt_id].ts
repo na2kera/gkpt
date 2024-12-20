@@ -19,7 +19,7 @@ type GkptPost = {
 };
 
 type ResponseData = {
-  data: GkptPost[] | null;
+  data: GkptPost | null;
   error: any;
 };
 
