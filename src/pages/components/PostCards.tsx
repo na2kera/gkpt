@@ -1,10 +1,12 @@
 import { Box } from "@mui/material";
 import React from "react";
-import PostCard from "./PostCard";
+import dynamic from "next/dynamic";
 
 type Props = {
   posts: Post[];
 };
+
+const PostCard = dynamic(() => import("./PostCard"), { ssr: false });
 
 const PostCards: React.FC<Props> = ({ posts }) => {
   return (
