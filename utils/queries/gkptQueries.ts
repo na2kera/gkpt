@@ -30,6 +30,30 @@ export const getGkpts = async () => {
   return { data, error };
 };
 
+export const getGkpt = async (id: string) => {
+  const { data, error } = await supabase
+    .from("Gkpts")
+    .select(
+      `
+      id,
+      created_at,
+      uuid,
+      Members (
+        id,
+        name,
+        avatar
+      ),
+      good,
+      keep,
+      problem,
+      action,
+      comment
+    `
+    )
+    .eq("id", id);
+  return { data, error };
+};
+
 export const deleteGkpt = async (id: string) => {
   const { data, error } = await supabase.from("Gkpts").delete().eq("id", id);
   return { data, error };
