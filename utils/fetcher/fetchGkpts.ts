@@ -19,6 +19,27 @@ export const fetchGkpts = async () => {
   }
 };
 
+export const fetchGkpt = async (gkpt_id: string) => {
+  try {
+    const res = await fetch(`${process.env.URL}/api/gkpt/detail/${gkpt_id}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (!res.ok) {
+      throw new Error(`HTTP error! status: ${res.status}`);
+    }
+
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    console.error("Failed to fetch gkpt:", error);
+    return { error: "Failed to fetch data" };
+  }
+};
+
 export const fetchIndividualGkpts = async (uuid: string) => {
   try {
     const res = await fetch(`${process.env.URL}/api/gkpt/${uuid}`, {
