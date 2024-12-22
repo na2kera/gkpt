@@ -13,10 +13,13 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import React from "react";
 import { useSession } from "next-auth/react";
 import CopyIcon from "./CopyIcon";
+import { useRouter } from "next/navigation";
 
 type Props = { post: Post };
 
 const OptionButton = ({ post }: Props) => {
+  const router = useRouter();
+
   const { data: session, status } = useSession();
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef<HTMLButtonElement>(null);
@@ -37,21 +40,20 @@ const OptionButton = ({ post }: Props) => {
   };
 
   const deletePost = async () => {
-    const res = await fetch("/api/deletePost", {
+    //TODO: 切り出し
+    const res = await fetch(`/api/gkpt/detail/${post.id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        id: post.id,
-      }),
     });
     const data = await res.json();
 
     if (data.error) {
       alert(data.error);
     } else {
-      location.reload();
+      //TODO: スナックバー
+      router.push("/");
     }
   };
 
