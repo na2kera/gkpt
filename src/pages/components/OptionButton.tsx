@@ -40,6 +40,7 @@ const OptionButton = ({ post }: Props) => {
   };
 
   const deletePost = async () => {
+    //TODO: 切り出し
     const res = await fetch(`/api/gkpt/detail/${post.id}`, {
       method: "DELETE",
       headers: {
@@ -51,6 +52,7 @@ const OptionButton = ({ post }: Props) => {
     if (data.error) {
       alert(data.error);
     } else {
+      //TODO: スナックバー
       router.push("/");
     }
   };
