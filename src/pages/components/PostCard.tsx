@@ -15,21 +15,21 @@ const PostCard: FC<Props> = ({ post }) => {
   return (
     //TODO: レスポンシブ対応
     <Card sx={{ width: 600 }}>
+      <CardHeader
+        avatar={
+          <Link href={`/${post?.Members?.id}`}>
+            <Avatar src={post?.Members?.avatar || ""}></Avatar>
+          </Link>
+        }
+        action={
+          <>
+            <OptionButton post={post} />
+          </>
+        }
+        title={post?.Members?.name || "unknown"}
+        subheader={post?.created_at ? formatDate(post.created_at) : ""}
+      />
       <Link href={`${post.Members?.id}/gkpt/${post.id}`}>
-        <CardHeader
-          avatar={
-            <Link href={`/${post?.Members?.id}`}>
-              <Avatar src={post?.Members?.avatar || ""}></Avatar>
-            </Link>
-          }
-          action={
-            <>
-              <OptionButton post={post} />
-            </>
-          }
-          title={post?.Members?.name || "unknown"}
-          subheader={post?.created_at ? formatDate(post.created_at) : ""}
-        />
         <GkptContents post={post} />
         {/* <Buttons /> */}
       </Link>
