@@ -19,6 +19,8 @@ const CreatePost = () => {
   //   return <p>Loading...</p>;
   // }
 
+  console.log(session);
+
   const uuid = session?.user?.id;
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -28,6 +30,7 @@ const CreatePost = () => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${session?.accessToken}`,
       },
       body: JSON.stringify({
         uuid,

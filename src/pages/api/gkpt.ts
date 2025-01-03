@@ -44,6 +44,12 @@ async function POST(req: NextApiRequest, res: NextApiResponse<ResponseData>) {
     return;
   }
 
+  const { accessToken } = req.headers;
+  if (!accessToken) {
+    res.status(401).json({ data: null, error: "Unauthorized" });
+    return;
+  }
+
   const gkpt = req.body;
 
   if (!gkpt.uuid) {
