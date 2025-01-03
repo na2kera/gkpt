@@ -41,7 +41,11 @@ const CreatePost = () => {
         comment,
       }),
     });
-    router.push("/");
+    if (!res.ok) {
+      alert("投稿に失敗しました");
+    } else {
+      router.push("/");
+    }
   };
   return (
     <>
