@@ -19,8 +19,6 @@ const CreatePost = () => {
   //   return <p>Loading...</p>;
   // }
 
-  console.log(session);
-
   const uuid = session?.user?.id;
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {

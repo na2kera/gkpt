@@ -44,8 +44,10 @@ async function POST(req: NextApiRequest, res: NextApiResponse<ResponseData>) {
     return;
   }
 
-  const { accessToken } = req.headers;
-  if (!accessToken) {
+  const authHeader = req.headers["authorization"];
+  const token = authHeader && authHeader.split(" ")[1];
+
+  if (!token) {
     res.status(401).json({ data: null, error: "Unauthorized" });
     return;
   }
