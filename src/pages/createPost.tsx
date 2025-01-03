@@ -28,6 +28,7 @@ const CreatePost = () => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${session?.accessToken}`,
       },
       body: JSON.stringify({
         uuid,
@@ -38,7 +39,11 @@ const CreatePost = () => {
         comment,
       }),
     });
-    router.push("/");
+    if (!res.ok) {
+      alert("投稿に失敗しました");
+    } else {
+      router.push("/");
+    }
   };
   return (
     <>
